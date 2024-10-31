@@ -1,0 +1,35 @@
+classDiagram
+    class Simulator {
+        +run_simulation()
+        -initialize_hosts()
+        -process_time_slot()
+        -handle_collisions()
+        +collect_statistics()
+    }
+    
+    class Host {
+        +frames_to_send
+        +current_frame
+        +state
+        +backoff_counter
+        +send_frame()
+        +handle_collision()
+        +sense_medium()
+    }
+    
+    class Frame {
+        +size
+        +sender_id
+        +transmission_time
+    }
+    
+    class Medium {
+        +status
+        +current_transmissions
+        +is_busy()
+        +detect_collision()
+    }
+
+    Simulator --> "*" Host
+    Simulator --> "1" Medium
+    Host --> "*" Frame
